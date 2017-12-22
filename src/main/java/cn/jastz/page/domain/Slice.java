@@ -1,4 +1,4 @@
-package cn.jastz.domain;
+package cn.jastz.page.domain;
 
 import java.util.List;
 

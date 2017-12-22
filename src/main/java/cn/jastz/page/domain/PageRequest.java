@@ -1,4 +1,4 @@
-package cn.jastz.domain;
+package cn.jastz.page.domain;
 
 /**
  * 分页请求参数（暴露页码、每页个数）
