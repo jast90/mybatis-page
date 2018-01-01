@@ -1,5 +1,7 @@
 package cn.jastz.page.domain;
 
+import com.google.common.collect.Lists;
+
 import java.util.List;
 
 /**
@@ -11,6 +13,10 @@ public class PageImpl<T> extends AbstractSlice<T> implements Page<T> {
 
     private final long total;
     private final Pageable pageable;
+
+    public PageImpl() {
+        this(Lists.newArrayList(), PageRequest.of(1, 15), 0);
+    }
 
     public PageImpl(List<T> content, Pageable pageable, long total) {
         super(content, pageable);
@@ -43,4 +49,5 @@ public class PageImpl<T> extends AbstractSlice<T> implements Page<T> {
     public boolean hasPrevious() {
         return getNumber() - 1 != 0;
     }
+
 }
