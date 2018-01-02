@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author zhiwen
  */
-public abstract class AbstractSlice<T> implements Slice<T> {
+public abstract class AbstractSlice<T> extends ArrayList<T> implements Slice<T> {
 
     private final List<T> content = new ArrayList<>();
     private Pageable pageable;
