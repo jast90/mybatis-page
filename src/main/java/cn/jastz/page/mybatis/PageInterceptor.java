@@ -60,7 +60,18 @@ public class PageInterceptor implements Interceptor {
             cacheKey = (CacheKey) args[4];
             boundSql = (BoundSql) args[5];
         }
-        PageRequest pageRequest = getPageRequest(parameter);
+
+        PageRequest pageRequest = null;
+        try {
+            pageRequest = getPageRequest(parameter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (pageRequest == null) {
+            return invocation.proceed();
+        }
+
         BoundSql pageBoundSql = pageBoundSql(ms.getConfiguration(), boundSql, pageRequest, parameter);
         List list = executor.query(ms, parameter, rowBounds, resultHandler, cacheKey, pageBoundSql);
         long total = queryTotal(newCountMappedStatement(ms, String.format("%s%s", ms.getId(), "_COUNT")), executor
