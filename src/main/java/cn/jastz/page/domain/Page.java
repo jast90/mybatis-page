@@ -14,6 +14,12 @@ public class Page<T> extends AbstractSlice<T> implements IPage<T> {
     private final long total;
     private final Pageable pageable;
 
+    public Page(Pageable pageable, long total) {
+        super(Lists.newArrayList(), pageable);
+        this.pageable = pageable;
+        this.total = total;
+    }
+
     public Page() {
         this(Lists.newArrayList(), PageRequest.of(1, 15), 0);
     }
@@ -50,4 +56,11 @@ public class Page<T> extends AbstractSlice<T> implements IPage<T> {
         return getNumber() - 1 != 0;
     }
 
+    @Override
+    public String toString() {
+        return "{\"_class\":\"Page\", " +
+                "\"total\":\"" + total + "\"" + ", " +
+                "\"pageable\":" + (pageable == null ? "null" : pageable) +
+                "}";
+    }
 }
