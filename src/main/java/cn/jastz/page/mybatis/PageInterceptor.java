@@ -1,6 +1,7 @@
 package cn.jastz.page.mybatis;
 
 import cn.jastz.page.domain.Page;
+import cn.jastz.page.domain.PageList;
 import cn.jastz.page.domain.PageRequest;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
@@ -76,7 +77,9 @@ public class PageInterceptor implements Interceptor {
         long total = queryTotal(newCountMappedStatement(ms, String.format("%s%s", ms.getId(), "_COUNT")), executor
                 , boundSql, parameter, resultHandler);
         Page page = new Page(list, pageRequest, total);
-        return page;
+        PageList pageList = new PageList();
+        pageList.setPage(page);
+        return pageList;
     }
 
     private PageRequest getPageRequest(Object parameter) {
