@@ -1,7 +1,7 @@
 package cn.jastz.page.mybatis;
 
+import cn.jastz.page.PageHolder;
 import cn.jastz.page.domain.Page;
-import cn.jastz.page.domain.PageHolder;
 import org.apache.ibatis.session.ResultContext;
 import org.apache.ibatis.session.ResultHandler;
 

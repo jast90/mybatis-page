@@ -1,7 +1,6 @@
 package cn.jastz.page.mybatis;
 
 import cn.jastz.page.domain.Page;
-import cn.jastz.page.domain.PageHolder;
 import cn.jastz.page.domain.PageRequest;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
@@ -65,7 +64,7 @@ public class PageInterceptor implements Interceptor {
         try {
             pageRequest = getPageRequest(parameter);
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
 
         if (pageRequest == null) {
@@ -77,7 +76,6 @@ public class PageInterceptor implements Interceptor {
         long total = queryTotal(newCountMappedStatement(ms, String.format("%s%s", ms.getId(), "_COUNT")), executor
                 , boundSql, parameter, resultHandler);
         Page page = new Page(list, pageRequest, total);
-        PageHolder.setPage(page);
         return page;
     }
 
